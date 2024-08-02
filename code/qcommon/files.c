@@ -181,7 +181,8 @@ or configs will never get loaded from disk!
 #define DEMO_PAK0_CHECKSUM   2985661941u
 
 static const unsigned int pak_checksums[] = {
-	1886207346u
+	1886207346u,
+	3705283002u
 };
 
 static const unsigned int en_sppak_checksums[] = {
@@ -3827,34 +3828,34 @@ static void FS_CheckSPPaks( void )
 
 			foundPak |= 1<<(pakBasename[6]-'1');
 		}
-		else
-		{
-			int index;
+		// else
+		// {
+		// 	int index;
 
-			// Finally check whether this pak's checksum is listed because the user tried
-			// to trick us by renaming the file, and set foundPak's highest bit to indicate this case.
+		// 	// Finally check whether this pak's checksum is listed because the user tried
+		// 	// to trick us by renaming the file, and set foundPak's highest bit to indicate this case.
 
-			for(index = 0; index < ARRAY_LEN( en_sppak_checksums ); index++)
-			{
-				if( curpack->checksum == en_sppak_checksums[index] ||
-					curpack->checksum == fr_sppak_checksums[index] ||
-					curpack->checksum == gm_sppak_checksums[index] ||
-					curpack->checksum == it_sppak_checksums[index] ||
-					curpack->checksum == sp_sppak_checksums[index] )
-				{
-					Com_Printf("\n\n"
-						"**************************************************\n"
-						"WARNING: %s is renamed pak file %s%csp_pak%d.pk3\n"
-						"Running in standalone mode won't work\n"
-						"Please rename, or remove this file\n"
-						"**************************************************\n\n\n",
-						curpack->pakFilename, BASEGAME, PATH_SEP, index + 1 );
+		// 	for(index = 0; index < ARRAY_LEN( en_sppak_checksums ); index++)
+		// 	{
+		// 		if( curpack->checksum == en_sppak_checksums[index] ||
+		// 			curpack->checksum == fr_sppak_checksums[index] ||
+		// 			curpack->checksum == gm_sppak_checksums[index] ||
+		// 			curpack->checksum == it_sppak_checksums[index] ||
+		// 			curpack->checksum == sp_sppak_checksums[index] )
+		// 		{
+		// 			Com_Printf("\n\n"
+		// 				"**************************************************\n"
+		// 				"WARNING: %s is renamed pak file %s%csp_pak%d.pk3\n"
+		// 				"Running in standalone mode won't work\n"
+		// 				"Please rename, or remove this file\n"
+		// 				"**************************************************\n\n\n",
+		// 				curpack->pakFilename, BASEGAME, PATH_SEP, index + 1 );
 
 
-					foundPak |= 0x80000000;
-				}
-			}
-		}
+		// 			foundPak |= 0x80000000;
+		// 		}
+		// 	}
+		// }
 	}
 
 	if(!foundPak && Q_stricmp(com_basegame->string, BASEGAME))
@@ -3928,32 +3929,32 @@ static void FS_CheckPak0( void )
 				&& strlen(pakBasename) == 4 && !Q_stricmpn( pakBasename, "pak", 3 )
 				&& pakBasename[3] >= '0' && pakBasename[3] <= '0' + NUM_ID_PAKS - 1)
 		{
-			if( curpack->checksum != pak_checksums[pakBasename[3]-'0'] )
-			{
-				if(pakBasename[3] == '0')
-				{
-					Com_Printf("\n\n"
-						"**************************************************\n"
-						"WARNING: " BASEGAME "/pak0.pk3 is present but its checksum (%u)\n"
-						"is not correct. Please re-copy pak0.pk3 from your\n"
-						"legitimate RTCW CDROM.\n"
-						"**************************************************\n\n\n",
-						curpack->checksum );
+			// if( curpack->checksum != pak_checksums[pakBasename[3]-'0'] )
+			// {
+			// 	if(pakBasename[3] == '0')
+			// 	{
+			// 		Com_Printf("\n\n"
+			// 			"**************************************************\n"
+			// 			"WARNING: " BASEGAME "/pak0.pk3 is present but its checksum (%u)\n"
+			// 			"is not correct. Please re-copy pak0.pk3 from your\n"
+			// 			"legitimate RTCW CDROM.\n"
+			// 			"**************************************************\n\n\n",
+			// 			curpack->checksum );
 
-					Com_Error(ERR_FATAL, NULL);
-				}
-				/*
-				else
-				{
-					Com_Printf("\n\n"
-							"**************************************************\n"
-							"WARNING: " BASEGAME "/pak%d.pk3 is present but its checksum (%u)\n"
-							"is not correct. Please re-install the point release\n"
-							"**************************************************\n\n\n",
-							pakBasename[3]-'0', curpack->checksum );
-				}
-				*/
-			}
+			// 		Com_Error(ERR_FATAL, NULL);
+			// 	}
+			// 	/*
+			// 	else
+			// 	{
+			// 		Com_Printf("\n\n"
+			// 				"**************************************************\n"
+			// 				"WARNING: " BASEGAME "/pak%d.pk3 is present but its checksum (%u)\n"
+			// 				"is not correct. Please re-install the point release\n"
+			// 				"**************************************************\n\n\n",
+			// 				pakBasename[3]-'0', curpack->checksum );
+			// 	}
+			// 	*/
+			// }
 
 			foundPak |= 1<<(pakBasename[3]-'0');
 		}
