@@ -3,6 +3,8 @@
 #
 # GNU Make required
 #
+
+#define BUILD_STANDALONE
 COMPILE_PLATFORM=$(shell uname | sed -e 's/_.*//' | tr '[:upper:]' '[:lower:]' | sed -e 's/\//_/g')
 COMPILE_ARCH=$(shell uname -m | sed -e 's/i.86/x86/')
 

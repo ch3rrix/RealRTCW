@@ -41,5 +41,6 @@ fi
 
 export PLATFORM=mingw32
 export ARCH=x86_64
+export BUILD_STANDALONE=1
 
 exec make $*

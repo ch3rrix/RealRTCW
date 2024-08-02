@@ -51,5 +51,6 @@ if [ "X$WINDRES" = "X" -o "X$CC" = "X" -o "X$CXX" = "X" ]; then
 fi
 
 export PLATFORM=mingw32
+export BUILD_STANDALONE=1
 
 exec make $*
