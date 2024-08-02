@@ -31,13 +31,14 @@ if [ "X$WINDRES" = "X" ]; then
         if [ "$?" = "0" ]; then
             export WINDRES="$full_check"
         fi
+            # export WINDRES="windres"
     done
 fi
 
-if [ "X$WINDRES" = "X" -o "X$CC" = "X" -o "X$CXX" = "X" ]; then
-    echo "Error: Must define or find WINDRES, CC, and CXX"
-    exit 1
-fi
+# if [ "X$WINDRES" = "X" -o "X$CC" = "X" -o "X$CXX" = "X" ]; then
+#     echo "Error: Must define or find WINDRES, CC, and CXX"
+#     exit 1
+# fi
 
 export PLATFORM=mingw32
 export ARCH=x86_64
